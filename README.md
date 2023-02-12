@@ -54,6 +54,4 @@ Libraries :
 - Multer (Uploading multiple images)
 
 
-Live link :
----------------
-www.fashionstudio.cf
+
