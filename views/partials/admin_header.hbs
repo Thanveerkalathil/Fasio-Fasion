@@ -1,0 +1,176 @@
+<aside id='left-panel' class='left-panel'>
+       <nav class='navbar navbar-expand-sm navbar-default'>
+              <div id='main-menu' class='main-menu collapse navbar-collapse'>
+                     <ul class='nav navbar-nav'>
+                            <li class='active'>
+                                   <a href='/admin/dashboard'><i class='menu-icon fa fa-pie-chart'></i>Dashboard
+                                   </a>
+                            </li>
+
+                            <li class=''>
+                                   <a href='/admin/banners'>
+                                          <i class='menu-icon fa fa-image'></i>Banners</a>
+                            </li>
+
+                            <li class='menu-item-has-children dropdown'>
+                                   <a href='#' class='dropdown-toggle' data-toggle='dropdown' aria-haspopup='true'
+                                          aria-expanded='false'>
+                                          <i class='menu-icon fa fa-th'></i>Categories</a>
+                                   <ul class='sub-menu children dropdown-menu'>
+                                          <li>
+                                                 <i class='fa fa-th mr-2'></i><a href='/admin/categories/all'>All
+                                                        categories</a>
+                                          </li>
+                                          <li>
+                                                 <i class='fa fa-trash mr-2'></i><a
+                                                        href='/admin/categories/deleted'>Deleted categories</a>
+                                          </li>
+
+                                   </ul>
+                            </li>
+
+                            <!-- /.menu-title -->
+
+                            <li class='menu-item-has-children dropdown'>
+                                   <a href='#' class='dropdown-toggle' data-toggle='dropdown' aria-haspopup='true'
+                                          aria-expanded='false'>
+                                          <i class='menu-icon fa fa-shopping-bag '></i>Products</a>
+                                   <ul class='sub-menu children dropdown-menu'>
+                                          <li>
+                                                 <i class='fa fa-shopping-bag mr-2'></i><a
+                                                        href='/admin/products/all'>All
+                                                        Products</a>
+                                          </li>
+                                          <li>
+                                                 <i class='fa fa-plus mr-2'></i><a href='/admin/add-product'>Add
+                                                        product</a>
+                                          </li>
+                                          <li>
+                                                 <i class='fa fa-trash mr-2'></i><a
+                                                        href='/admin/deletedProducts'>Deleted products</a>
+                                          </li>
+                                   </ul>
+                            </li>
+                            <li class=''>
+                                   <a href='/admin/coupons'>
+                                          <i class='menu-icon fa fa-tag'></i>Coupons</a>
+                            </li>
+                            <li class='menu-item-has-children dropdown'>
+                                   <a href='#' class='dropdown-toggle' data-toggle='dropdown' aria-haspopup='true'
+                                          aria-expanded='false'>
+                                          <i class='menu-icon fa fa-users'></i>Users</a>
+                                   <ul class='sub-menu children dropdown-menu'>
+                                          <li>
+                                                 <i class='fa fa-users mr-2'></i><a href='/admin/users/all'>All
+                                                        users</a>
+                                          </li>
+                                          <li>
+                                                 <i class='fa fa-ban mr-2'></i><a href='/admin/users/blocked'>Blocked
+                                                        users</a>
+                                          </li>
+
+                                   </ul>
+                            </li>
+                            <li class=''>
+                                   <a href='/admin/orders'>
+                                          <i class='menu-icon fa fa-list-alt'></i>Orders</a>
+                            </li>
+
+
+                     </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+       </nav>
+</aside>
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id='right-panel' class='right-panel adminHeader'>
+       <!-- Header-->
+       <header id='header' class='header'>
+              <div class='top-left'>
+                     <div class='navbar-header'>
+                            <a class='navbar-brand font-weight-bold' href='./'>
+                                   FASIO FASION</a>
+                            <a id='menuToggle' class='menutoggle'><i class='fa fa-bars'></i></a>
+                     </div>
+              </div>
+              <div class='top-right'>
+                     <div class='header-menu'>
+                            <div class='header-left'>
+
+
+                                   <div class='dropdown for-notification'>
+                                          <button class='btn btn-secondary dropdown-toggle' type='button'
+                                                 id='notification' data-toggle='dropdown' aria-haspopup='true'
+                                                 aria-expanded='false'>
+                                                 <i class='fa fa-bell'></i>
+                                                 <p class='count bg-danger' id="notificationCount">{{#if
+                                                        reviewNotifications}}{{reviewNotifications.length}}{{else}}0
+                                                        {{/if}}</p>
+                                          </button>
+                                          <div class='dropdown-menu' aria-labelledby='notification' id="messageBox">
+                                                 <p id="notificationPlaceHolder">{{#if
+                                                        reviewNotifications}}{{reviewNotifications.length}}{{else}}0
+                                                        {{/if}} Notifications</p>
+                                                 {{#if reviewNotifications}}
+                                                 {{#each reviewNotifications}}
+                                                 <a class='dropdown-item media'
+                                                        onclick="readMessage('{{this._id}}','{{this.product}}')"
+                                                        style="cursor:pointer;">
+                                                        <i class='fa fa-check'></i>
+
+
+                                                        <p>{{this.user.user}} Rated {{this.rate_value}} for a
+                                                               product.<br>Click to view the product.</p>
+
+                                                 </a>
+                                                 {{/each}}
+                                                 {{/if}}
+                                          </div>
+                                   </div>
+                            </div>
+
+                            <div class='user-area dropdown float-right'>
+
+
+                                   <a href='#' class='dropdown-toggle active' data-toggle='dropdown'
+                                          aria-haspopup='true' aria-expanded='false'>
+                                          <img class='user-avatar rounded-circle'
+                                                 src='/users/profile_pictures/thumbnail.jpg' alt='User Avatar' />
+                                   </a>
+
+                                   <div class='user-menu dropdown-menu'>
+                                          <a class='nav-link font-weight-bold' href='#'><i
+                                                        class='fa fa- user'></i>{{session.adminName}}</a>
+                                          <hr class="mt-2">
+
+                                          <a class='nav-link' href='/admin/logout'><i
+                                                        class='fa fa-power -off'></i>Logout</a>
+                                   </div>
+                            </div>
+                     </div>
+              </div>
+       </header>
+       <!-- /#header -->
+
+       <script src='https://code.jquery.com/jquery-3.1.1.js'></script>
+       <script src="/admin/local_js/script.js"></script>
+       <script src="/socket.io/socket.io.js"></script>
+       <script>
+              const socket = io();
+              socket.on('reviewMessage', (message) => {
+                     console.log(message)
+                     notificationCount = document.getElementById('notificationCount').innerText
+                     newCount = parseInt(notificationCount) + 1
+                     document.getElementById('notificationCount').innerText = newCount
+                     const messageElement = document.createElement('div')
+                     messageElement.innerHTML = `<a class='dropdown-item media' onclick="readMessage('${message._id}','${message.product}')" style="cursor:pointer;">
+                                                        <i class='fa fa-check'></i>
+                                                        <p>${message.username} Rated ${message.rate_value} for a product.<br>Click to view the product.</p>
+                                        </a>`
+                     document.getElementById('notificationPlaceHolder').innerText = `${newCount} Notifications`
+                     document.getElementById('messageBox').append(messageElement)
+
+              })
+
+       </script>

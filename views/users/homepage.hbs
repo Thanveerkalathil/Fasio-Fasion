@@ -1,0 +1,314 @@
+<section class="section-slide">
+    <div class="wrap-slick1">
+        <div class="slick1">
+            {{#if banners}}
+            {{#each banners}}
+
+            <div class="item-slick1" style="background-image: url(/admin/product-images/{{this.image}});">
+                <div class="container h-full">
+                    <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+                        <div class="layer-slick1 animated  visible-false" data-appear="fadeInDown" data-delay="0">
+                            <span class="ltext-101 cl2 respon2">
+                                {{this.subtitle}}
+                            </span>
+                        </div>
+
+                        <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="200">
+                            <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+                                {{this.title}}
+                            </h2>
+                        </div>
+
+                        <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="300">
+                            <a href="#explore"
+                                class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                Shop Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{/each}}
+            {{else}}
+            <div class="item-slick1" style="background-image: url(/users/images/slide-03.jpg);">
+                <div class="container h-full">
+                    <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+                        <div class="layer-slick1 animated  visible-false" data-appear="fadeInDown" data-delay="0">
+                            <span class="ltext-101 cl2 respon2">
+                                Welcome to
+                            </span>
+                        </div>
+
+
+                        <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="200">
+                            <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+                                Fashion studio
+                            </h2>
+                        </div>
+
+                        <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="300">
+                            <a href="#explore"
+                                class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                Shop Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Product -->
+<section class="bg0 p-t-23 p-b-140 mt-5" id="explore">
+    <div class="container">
+        <div class="p-b-10">
+            {{#if exploreProducts}}
+            <h3 class="ltext-103 cl5 mb-4">
+                Explore
+            </h3>
+            <div class="row isotope-grid">
+                {{#each exploreProducts}}
+                <div class="col-sm-6 col-md-2 col-lg-2 p-b-35 isotope-item">
+
+                    <div class="block2">
+                        <a href="/product-view{{this._id}}">
+                            <div class="block2-pic hov-img0">
+                                <img src="/admin/product-images/{{this.images.[0].filename}}" alt="IMG-PRODUCT" />
+
+                            </div>
+                            <a href="/product-view{{this._id}}"></a>
+
+                            <div class="block2-txt flex-w flex-t p-t-14">
+                                <div class="block2-txt-child1 flex-col-l">
+
+                                    <a
+                                        class="font-weight-bold cut-text stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{this.brand}}</a>
+                                    <a href="/product-view{{this._id}}"
+                                        class="cut-text stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        {{this.product_name}}
+                                    </a>
+                                    <a class="stext-104 cl4 hov-cl1 trans-04 js-name-b2">{{this.category}}</a>
+                                    <div class="d-flex flex-row mb-2">
+                                        {{#each this.stars}}
+                                        <i
+                                            class="{{#if this}} fa fa-star  text-warning {{else}}fa fa-star-o text-secondary {{/if}}"></i>
+                                        {{/each}}
+                                    </div>
+                                    <div class="d-flex">
+                                        <span
+                                            class="stext-105  font-weight-bold  {{#if this.offerPrice}} text-danger {{/if}} mr-3">
+                                            {{#if this.offerPrice}}
+                                            <del>Rs.{{this.price}}</del>
+                                            {{else}}
+                                            Rs.{{this.price}}
+                                            {{/if}}
+
+                                        </span>
+                                        {{#if this.offerPrice}}
+                                        <span class="stext-105 cl3 font-weight-bold">
+
+                                            Rs.{{this.offerPrice}}
+
+                                        </span>
+                                        {{/if}}
+                                    </div>
+                                    {{#if this.offerPrice}}
+                                    <p class="text-success font-weight-bold" style="font-size: 15px;">
+                                        ({{this.offerPercentage}} %off)
+                                    </p>
+                                    {{/if}}
+                                </div>
+
+                                <div class="block2-txt-child2 flex-r p-t-3">
+                                    <a onclick="addToWishlist('{{this._id}}','fromProductsView')"
+                                        class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                        <img style="cursor: pointer;" class="icon-heart1{{this._id}} dis-block trans-04"
+                                            src="/users/images/icons/icon-heart-01.png" alt="ICON" {{#if
+                                            this.wishlisted.wishlisted}} hidden {{/if}}>
+                                        <img style="cursor: pointer;" class="icon-heart2{{this._id}} dis-block trans-04"
+                                            src="/users/images/icons/icon-heart-02.png" alt="ICON" / {{#unless
+                                            this.wishlisted.wishlisted}} hidden {{/unless}}>
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+
+                    <!-- Block2 -->
+
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+
+
+
+
+        {{#if newProducts}}
+        <div class="p-b-10 mt-5">
+            <h3 class="ltext-103 cl5 mb-4">
+                New arrivals
+            </h3>
+            <div class="row isotope-grid d-flex">
+                {{#each newProducts}}
+                <div class="col-sm-6 col-md-2 col-lg-2 p-b-35 isotope-item">
+
+                    <div class="block2">
+                        <a href="/product-view{{this._id}}">
+                            <div class="block2-pic hov-img0">
+                                <img src="/admin/product-images/{{this.images.[0].filename}}" alt="IMG-PRODUCT" />
+
+                            </div>
+                            <a href="/product-view{{this._id}}"></a>
+
+                            <div class="block2-txt flex-w flex-t p-t-14">
+                                <div class="block2-txt-child1 flex-col-l">
+
+                                    <a
+                                        class="font-weight-bold cut-text stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{this.brand}}</a>
+                                    <a href="/product-view{{this._id}}"
+                                        class="cut-text stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        {{this.product_name}}
+                                    </a>
+                                    <a class="stext-104 cl4 hov-cl1 trans-04 js-name-b2">{{this.category}}</a>
+                                    <div class="d-flex flex-row mb-2">
+                                        {{#each this.stars}}
+                                        <i
+                                            class="{{#if this}} fa fa-star  text-warning {{else}}fa fa-star-o text-secondary {{/if}}"></i>
+                                        {{/each}}
+                                    </div>
+                                    <div class="d-flex">
+                                        <span
+                                            class="stext-105  font-weight-bold  {{#if this.offerPrice}} text-danger {{/if}} mr-3">
+                                            {{#if this.offerPrice}}
+                                            <del>Rs.{{this.price}}</del>
+                                            {{else}}
+                                            Rs.{{this.price}}
+                                            {{/if}}
+
+                                        </span>
+                                        {{#if this.offerPrice}}
+                                        <span class="stext-105 cl3 font-weight-bold">
+
+                                            Rs.{{this.offerPrice}}
+
+                                        </span>
+                                        {{/if}}
+                                    </div>
+                                    {{#if this.offerPrice}}
+                                    <p class="text-success font-weight-bold" style="font-size: 15px;">
+                                        ({{this.offerPercentage}} %off)
+                                    </p>
+                                    {{/if}}
+                                </div>
+
+                                <div class="block2-txt-child2 flex-r p-t-3">
+                                    <a onclick="addToWishlist('{{this._id}}','fromProductsView')"
+                                        class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                        <img style="cursor: pointer;" class="icon-heart1{{this._id}} dis-block trans-04"
+                                            src="/users/images/icons/icon-heart-01.png" alt="ICON" {{#if
+                                            this.wishlisted.wishlisted}} hidden {{/if}}>
+                                        <img style="cursor: pointer;" class="icon-heart2{{this._id}} dis-block trans-04"
+                                            src="/users/images/icons/icon-heart-02.png" alt="ICON" / {{#unless
+                                            this.wishlisted.wishlisted}} hidden {{/unless}}>
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+
+                    <!-- Block2 -->
+
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+
+    </div>
+</section>
+
+
+
+
+<style>
+    .coupon-card {
+
+        position: relative;
+        background-color: #7B1FA2;
+        border: none;
+        padding: 40px;
+
+    }
+
+    .coupon-content {
+
+        z-index: 10;
+    }
+
+    .coupon-logo {
+
+        margin-bottom: 50px;
+    }
+
+
+    .coupn-off {
+
+        line-height: 0px;
+    }
+
+    .coupon-off h1 {
+
+        font-size: 70px;
+    }
+
+    .coupon-off span {
+
+        margin-right: 100px;
+    }
+
+
+    .coupon-plus {
+        font-size: 23px;
+    }
+
+    .coupon-code {
+
+        text-transform: uppercase;
+        padding: 10px;
+        background-color: #fff;
+        color: red;
+        font-size: 20px;
+    }
+
+    .coupon-cross-bg {
+
+        height: 100%;
+        width: 100%;
+        position: absolute;
+
+        background-color: #9C27B0;
+
+        left: 0px;
+        top: 0px;
+        opacity: 0.4;
+        clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+        z-index: 1;
+    }
+</style>
+
+
+
+
+
+<script src='https://code.jquery.com/jquery-3.1.1.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js'></script>
+<script src="/users/local_js/validate.js"></script>
+<script src="/users/local_js/script.js"></script>

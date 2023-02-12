@@ -1,0 +1,344 @@
+<div class="container mb-5">
+       <div class="flex-w flex-sb-m p-b-30 p-t-80">
+
+              <div class="d-block d-md-none flex-w flex-c-m m-tb-10">
+                     <div
+                            class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                            <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+                            <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                            Filter
+                     </div>
+              </div>
+
+              <!-- Search product -->
+              <div class="dis-none panel-search w-full p-t-10 p-b-15">
+                     <div class="bor8 dis-flex p-l-15">
+                            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                                   <i class="zmdi zmdi-search"></i>
+                            </button>
+
+                            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
+                                   placeholder="Search" />
+                     </div>
+              </div>
+
+              <!-- Filter -->
+
+       </div>
+       <div class="row">
+              <div class="col-12 col-md-4 col-lg-3">
+                     <div class="panel-filter w-full">
+                            <form id="filterProductsForm">
+                                   <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                                          <div class="p-r-15 p-b-27 col-12">
+                                                 <div class="mtext-102 cl2 p-b-15">
+                                                        Sort By
+                                                 </div>
+
+                                                 <ul id="filterByPriceUl">
+
+                                                        <li class="p-b-6">
+                                                               <button href="#" class="filter-link stext-106 trans-04"
+                                                                      id="filterByPriceLink0"
+                                                                      onclick="changeFilterPriceValue(event,0);">
+                                                                      Default
+                                                               </button>
+                                                               <input type="radio" id="filterByPrice0" name="price"
+                                                                      value="0"
+                                                                      onchange="saveFilterByPriceRadio(0);  submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceValue(event,1)"
+                                                                      id="filterByPriceLink1"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Price: Low to High
+
+                                                               </button>
+                                                               <input type="radio" id="filterByPrice1" name="price"
+                                                                      value="1"
+                                                                      onchange="saveFilterByPriceRadio(1);  submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceValue(event,-1);"
+                                                                      id="filterByPriceLink-1"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Price: High to Low
+                                                               </button>
+                                                               <input type="radio" id="filterByPrice-1" name="price"
+                                                                      value="-1"
+                                                                      onchange="saveFilterByPriceRadio(-1); submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceValue(event,4);"
+                                                                      id="filterByPriceLink4"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Popularity
+                                                               </button>
+                                                               <input type="radio" id="filterByPrice4" name="price"
+                                                                      value="popularity"
+                                                                      onchange="saveFilterByPriceRadio(4); submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+                                                 </ul>
+                                          </div>
+
+                                          <div class=" p-r-15 p-b-27 col-12">
+                                                 <div class="mtext-102 cl2 p-b-15 d-flex justify-content-between">
+                                                        <a>Categories</a>
+
+                                                 </div>
+
+
+                                                 <ul>
+                                                        {{#each categories}}
+                                                        <li class="p-b-6 p-0">
+                                                               <div class="form-check mb-1">
+                                                                      <input type="checkbox"
+                                                                             class="filter-checkbox form-check-input ml-0"
+                                                                             name="categories" value="{{this._id}}"
+                                                                             id="filterCategoryCheckbox{{this._id}}"
+                                                                             onchange="saveFilterCategoryChecked('{{this._id}}'); submitFilterProductsForm(this.form);">
+                                                                      <label class="form-check-label">
+                                                                             <a href=""
+                                                                                    class="filter-link stext-106 trans-04 ">
+
+                                                                                    {{this.name}}
+                                                                             </a>
+                                                                      </label>
+                                                               </div>
+                                                        </li>
+                                                        {{/each}}
+
+
+                                                 </ul>
+                                          </div>
+
+
+                                          <div class=" p-r-15 p-b-27 col-12">
+                                                 <div class="mtext-102 cl2 p-b-15">
+                                                        Price
+                                                 </div>
+
+                                                 <ul id="filterByPriceRangeUl">
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceRangeValue(event,0)"
+                                                                      id="filterByPriceRangeLink0"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      All
+                                                               </button>
+                                                               <input type="radio" id="filterPriceRange0"
+                                                                      name="priceRange" value='{"min":0,"max":"max"}'
+                                                                      onchange="saveFilterByPriceRangeRadio(0); submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceRangeValue(event,1)"
+                                                                      id="filterByPriceRangeLink1"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Rs.0 - Rs.500
+                                                               </button>
+
+                                                               <input type="radio" id="filterPriceRange1"
+                                                                      name="priceRange" value='{"min":0,"max":500}'
+                                                                      onchange="saveFilterByPriceRangeRadio(1); submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceRangeValue(event,2)"
+                                                                      id="filterByPriceRangeLink2"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Rs.500 - Rs.1000
+                                                               </button>
+                                                               <input type="radio" id="filterPriceRange2"
+                                                                      name="priceRange" value='{"min":500,"max":1000}'
+                                                                      onchange="saveFilterByPriceRangeRadio(2); submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceRangeValue(event,3)"
+                                                                      id="filterByPriceRangeLink3"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Rs.1000 - Rs.1500
+                                                               </button>
+                                                               <input type="radio" id="filterPriceRange3"
+                                                                      name="priceRange" value='{"min":1000,"max":1500}'
+                                                                      onchange="saveFilterByPriceRangeRadio(3); submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceRangeValue(event,4)"
+                                                                      id="filterByPriceRangeLink4"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Rs.1500 - Rs.2000
+                                                               </button>
+                                                               <input type="radio" id="filterPriceRange4"
+                                                                      name="priceRange" value='{"min":1500,"max":2000}'
+                                                                      onchange="saveFilterByPriceRangeRadio(4);submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+
+                                                        <li class="p-b-6">
+                                                               <button onclick="changeFilterPriceRangeValue(event,5)"
+                                                                      id="filterByPriceRangeLink5"
+                                                                      class="filter-link stext-106 trans-04">
+                                                                      Rs.2000+
+                                                               </button>
+                                                               <input type="radio" id="filterPriceRange5"
+                                                                      name="priceRange" value='{"min":2000,"max":"max"}'
+                                                                      onchange="saveFilterByPriceRangeRadio(5); submitFilterProductsForm(this.form);"
+                                                                      class="dis-none">
+                                                        </li>
+                                                 </ul>
+                                          </div>
+
+
+                                   </div>
+                            </form>
+                     </div>
+              </div>
+
+              <div class="col-12 col-md-8 col-lg-9 reload-parent">
+                     <div class="row isotope-grid reload-child">
+                            {{#if products}}
+                            {{#each products}}
+
+                            <div class="col-sm-6 col-md-3 col-lg-3 p-b-35 isotope-item">
+
+                                   <div class="block2">
+                                          <a href="/product-view{{this._id}}">
+                                                 <div class="block2-pic hov-img0">
+                                                        <img src="/admin/product-images/{{this.images.[0].filename}}"
+                                                               alt="IMG-PRODUCT" />
+
+                                                 </div>
+                                          </a>
+
+                                          <div class="block2-txt flex-w flex-t p-t-14">
+                                                 <div class="block2-txt-child1 flex-col-l">
+
+                                                        <a
+                                                               class="font-weight-bold cut-text stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{this.brand}}</a>
+                                                        <a href="/product-view{{this._id}}"
+                                                               class="cut-text stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                               {{this.product_name}}
+                                                        </a>
+                                                        <div class="d-flex flex-row mt-1">
+                                                               {{#each this.stars}}
+                                                               <i
+                                                                      class="{{#if this}} fa fa-star  text-warning {{else}}fa fa-star-o text-secondary {{/if}}"></i>
+                                                               {{/each}}
+                                                        </div>
+                                                        <a
+                                                               class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{this.category}}</a>
+                                                        <div class="d-flex">
+                                                               <span
+                                                                      class="stext-105  font-weight-bold  {{#if this.offerPrice}} text-danger {{/if}} mr-3">
+                                                                      {{#if this.offerPrice}}
+                                                                      <del>Rs.{{this.price}}</del>
+                                                                      {{else}}
+                                                                      Rs.{{this.price}}
+
+                                                                      {{/if}}
+
+                                                               </span>
+                                                               {{#if this.offerPrice}}
+                                                               <span class="stext-105 cl3 font-weight-bold">
+
+                                                                      Rs.{{this.offerPrice}}
+
+                                                               </span>
+                                                               {{/if}}
+                                                        </div>
+                                                        {{#if this.offerPrice}}
+                                                        <p class="text-success font-weight-bold"
+                                                               style="font-size: 15px;">({{this.offerPercentage}} %off)
+                                                        </p>
+                                                        {{/if}}
+
+
+                                                 </div>
+
+                                                 <div class="block2-txt-child2 flex-r p-t-3">
+                                                        <a onclick="addToWishlist('{{this._id}}','fromProductsView')"
+                                                               class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                                               <img style="cursor: pointer;"
+                                                                      class="icon-heart1{{this._id}} dis-block trans-04"
+                                                                      src="/users/images/icons/icon-heart-01.png"
+                                                                      alt="ICON" {{#if this.wishlisted.wishlisted}}
+                                                                      hidden {{/if}}>
+                                                               <img style="cursor: pointer;"
+                                                                      class="icon-heart2{{this._id}} dis-block trans-04"
+                                                                      src="/users/images/icons/icon-heart-02.png"
+                                                                      alt="ICON" / {{#unless
+                                                                      this.wishlisted.wishlisted}} hidden {{/unless}}>
+                                                        </a>
+                                                 </div>
+                                          </div>
+                                   </div>
+
+                                   <!-- Block2 -->
+
+                            </div>
+
+                            {{/each}}
+                            {{else}}
+                            <div class="col p-b-35 isotope-item">
+
+
+                                   <div class="card border-0" style="height: 70vh;">
+
+
+                                          <div class="card-body cart d-flex align-items-center justify-content-center">
+                                                 <div class="text-center">
+                                                        <img src="/users/images/icons/no-results.png" width="70"
+                                                               height="70" class="img-fluid mb-4 mr-3">
+                                                        <h3><strong>Sorry! We couldn't find anything</strong>
+                                                        </h3>
+                                                 </div>
+                                          </div>
+
+                                   </div>
+
+
+                            </div>
+
+                            {{/if}}
+                     </div>
+              </div>
+       </div>
+
+
+
+
+
+</div>
+<style>
+       @media (max-width: 768px) {
+              .panel-filter {
+                     display: none;
+              }
+       }
+
+       @media (width > 768px) {
+              .panel-filter {
+                     display: block;
+              }
+       }
+</style>
+
+
+<script src='https://code.jquery.com/jquery-3.1.1.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js'></script>
+
+<script src="/users/local_js/validate.js"></script>
+<script src="/users/local_js/script.js"></script>
